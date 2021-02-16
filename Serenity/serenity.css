@@ -3,6 +3,7 @@
     font-size: 12pt;
     position: relative;
     max-width: 930px;
+    width: 930px;
     box-sizing: border-box;
     /* Mixin */
 }
@@ -46,6 +47,11 @@
     padding: 0;
 }
 
+.sheet-serenity-charactersheet label {
+    font-weight: normal !important;
+    font-size: inherit !important;
+}
+
 .sheet-serenity-charactersheet .sheet-serenity-fieldset:before {
     content: attr(title);
     position: absolute;
@@ -75,9 +81,27 @@
     margin-bottom: 15px;
 }
 
+.sheet-serenity-charactersheet .sheet-serenity-asset-specialization,
+.sheet-serenity-charactersheet .sheet-serenity-complication-specialization {
+    display: inline-block;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-asset-description,
+.sheet-serenity-charactersheet .sheet-serenity-complication-description,
+.sheet-serenity-charactersheet .sheet-serenity-character-custom-assets,
+.sheet-serenity-charactersheet .sheet-serenity-character-custom-complications {
+    text-align: left;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-character-custom-assets,
+.sheet-serenity-charactersheet .sheet-serenity-character-custom-complications {
+    display: block;
+}
+
 .sheet-serenity-charactersheet .sheet-serenity-custom-asset,
 .sheet-serenity-charactersheet .sheet-serenity-custom-complication {
     display: flex;
+    padding-top: 5px;
 }
 
 .sheet-serenity-charactersheet .sheet-serenity-custom-asset textarea,
@@ -91,8 +115,8 @@
     display: none;
 }
 
-.sheet-serenity-charactersheet .sheet-serenity-custom-asset-enable+.arrow:before,
-.sheet-serenity-charactersheet .sheet-serenity-custom-complication-enable+.arrow:before {
+.sheet-serenity-charactersheet .sheet-serenity-custom-asset-enable+.sheet-serenity-arrow:before,
+.sheet-serenity-charactersheet .sheet-serenity-custom-complication-enable+.sheet-serenity-arrow:before {
     content: "";
     margin-right: 5px;
     margin-bottom: 3px;
@@ -104,8 +128,8 @@
     transform: rotate(-45deg);
 }
 
-.sheet-serenity-charactersheet .sheet-serenity-custom-asset-enable:checked+.arrow:before,
-.sheet-serenity-charactersheet .sheet-serenity-custom-complication-enable:checked+.arrow:before {
+.sheet-serenity-charactersheet .sheet-serenity-custom-asset-enable:checked+.sheet-serenity-arrow:before,
+.sheet-serenity-charactersheet .sheet-serenity-custom-complication-enable:checked+.sheet-serenity-arrow:before {
     content: "";
     margin-right: 5px;
     margin-bottom: 1px;
@@ -117,16 +141,16 @@
     transform: rotate(45deg);
 }
 
-.sheet-serenity-charactersheet .repeating_customAssets,
-.sheet-serenity-charactersheet .repeating_customComplications {
+.sheet-serenity-charactersheet .sheet-serenity-custom-assets,
+.sheet-serenity-charactersheet .sheet-serenity-custom-complications {
     display: none;
 }
 
-.sheet-serenity-charactersheet .sheet-serenity-custom-asset-enable:checked~.repeating_customAssets {
+.sheet-serenity-charactersheet .sheet-serenity-custom-asset-enable:checked~.sheet-serenity-custom-assets {
     display: block;
 }
 
-.sheet-serenity-charactersheet .sheet-serenity-custom-complication-enable:checked~.repeating_customComplications {
+.sheet-serenity-charactersheet .sheet-serenity-custom-complication-enable:checked~.sheet-serenity-custom-complications {
     display: block;
 }
 
@@ -1175,6 +1199,10 @@
     width: 180px;
 }
 
+.sheet-serenity-charactersheet .sheet-character-attributes td:not(:last-child) {
+    text-align: right;
+}
+
 .sheet-serenity-charactersheet .sheet-character-derived-traits {
     text-align: right;
     width: 405px;
@@ -1185,6 +1213,7 @@
 
 .sheet-serenity-charactersheet .sheet-character-derived-traits td:not(:last-child) {
     padding-right: 10px;
+    text-align: right;
 }
 
 .sheet-serenity-charactersheet .sheet-character-derived-traits input {
@@ -1456,6 +1485,10 @@
     width: 450px;
 }
 
+.sheet-serenity-charactersheet .sheet-character-skills td {
+    text-align: right;
+}
+
 .sheet-serenity-charactersheet .sheet-character-skills td:nth-child(2) {
     border-right: 2px groove #c93f00;
     padding-right: 10px;
@@ -1666,6 +1699,98 @@
 .sheet-serenity-charactersheet .sheet-serenity-history textarea {
     min-height: 200px;
     width: 100%;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip {
+    position: relative;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip .sheet-serenity-tooltip-text {
+    position: absolute;
+    z-index: 1;
+    text-align: left;
+    font-size: larger;
+    /* vertically center */
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    /* basic styles */
+    width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    opacity: 0;
+    transition: 0.3s opacity;
+    display: none;
+    /* move to right */
+    left: 100%;
+    margin-left: 15px;
+    /* and add a small left margin */
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip .sheet-serenity-tooltip-text table {
+    margin: 5px;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip .sheet-serenity-tooltip-text table td {
+    color: white;
+    padding: 5px;
+    border: 1px solid white;
+    text-align: left;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip .sheet-serenity-tooltip-text table td:first-child {
+    border: none;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip .sheet-serenity-tooltip-text.sheet-serenity-tooltip-text-wide {
+    width: 500px;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip .sheet-serenity-tooltip-text.sheet-serenity-tooltip-text-left {
+    /* reset defaults */
+    left: initial;
+    margin: initial;
+    /* set new values */
+    right: 100%;
+    margin-right: 15px;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip .sheet-serenity-tooltip-text:after {
+    content: "";
+    position: absolute;
+    /* vertically center */
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    /* the arrow */
+    border: 10px solid #000;
+    border-color: transparent black transparent transparent;
+    opacity: 0;
+    transition: 0.3s;
+    /* position tooltip correctly */
+    right: 100%;
+    margin-left: -5px;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip .sheet-serenity-tooltip-text.sheet-serenity-tooltip-text-left:after {
+    /* reset defaults */
+    right: initial;
+    margin: initial;
+    border: initial;
+    /* set new values */
+    left: 100%;
+    margin-right: -5px;
+    /* the arrow */
+    border: 10px solid #000;
+    border-color: transparent transparent transparent black;
+}
+
+.sheet-serenity-charactersheet .sheet-serenity-tooltip:hover .sheet-serenity-tooltip-text,
+.sheet-serenity-charactersheet .sheet-serenity-tooltip:hover .sheet-serenity-tooltip-text:after {
+    opacity: 1;
+    display: block;
 }
 
 div.sheet-tab-content {
